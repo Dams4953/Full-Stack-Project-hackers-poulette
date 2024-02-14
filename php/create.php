@@ -20,4 +20,6 @@ if (isset($_POST['save'])) {
     $re->bindParam(':file', $fileContent, PDO::PARAM_LOB);
     $re->bindParam(':about', $about, PDO::PARAM_STR);
     $re->execute();
+
+    header("location: index.php");
 }
