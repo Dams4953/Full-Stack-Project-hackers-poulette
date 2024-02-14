@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/dist/styles.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 
 </head>
@@ -13,6 +14,17 @@
 <body class="flex justify-center items-center min-h-screen">
 
     <main class="w-4/5">
+
+        <?php
+        include 'captcha.php';
+        ?>
+
+        <form action="?" method="POST">
+            <div class="g-recaptcha" data-sitekey="6Lcaa3IpAAAAAB3JtnLTJcsICp-sdzePdM0Rbina"></div>
+            <br />
+            <input type="submit" name="captcha-submit" value="Submit">
+        </form>
+
         <form action="create.php" method="post" enctype="multipart/form-data">
 
             <div class="space-y-12">
