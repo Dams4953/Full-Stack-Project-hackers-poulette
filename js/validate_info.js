@@ -99,7 +99,6 @@ function validateDescription() {
     }
 }
 
-
 function formValidate() {
     // Ajoutez un gestionnaire d'événement pour soumettre le formulaire
     form.addEventListener('submit', function (event) {
@@ -126,6 +125,3 @@ function formValidate() {
 }
 
 formValidate();
-
-
-
