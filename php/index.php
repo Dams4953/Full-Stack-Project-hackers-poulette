@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/dist/styles.css">
+    <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script defer src="../js/validate_info.js"></script>
@@ -24,7 +24,7 @@
             <input type="submit" name="captcha-submit" value="Submit">
         </form>
 
-        <form method="POST" enctype="multipart/form-data" class="border border-solid border-black border-1 rounded-3xl bg-orange-200 shadow-2xl p-4" >
+        <form method="POST" class="border border-solid border-black border-1 rounded-3xl bg-orange-200 shadow-2xl p-4" >
 
         <div class="space-y-5">
                 <div>
