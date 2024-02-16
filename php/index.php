@@ -10,8 +10,8 @@ include 'create.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <script type="module" defer src="../js/script.js"></script>
-
+    <script type="module" src="../js/script.js"></script>
+    <title>Contact form</title>
 </head>
 
 <body class="flex justify-center items-center full min-h-screen">
@@ -24,7 +24,7 @@ include 'create.php';
             <button type="submit" name="connexion">connexion</button>
         </form>
 
-        <form action="create.php" method="POST" enctype="multipart/form-data" class="border border-solid border-black border-1 rounded-3xl bg-orange-200 shadow-2xl p-4">
+        <form action="create.php" method="POST" id="form_contact" enctype="multipart/form-data" class="contact-form  Z-0 border border-solid border-black border-1 rounded-3xl bg-orange-200 shadow-2xl p-4">
 
 
             <div class="space-y-5">
@@ -36,7 +36,7 @@ include 'create.php';
                             <div class="sm:col-span-3">
                                 <label for="first-name" class="block text-base font-medium leading-6 text-gray-900 pl-2">First name</label>
                                 <div class="mt-2 containerFirstName">
-                                    <input type="text" onkeyup="validateFirstName()" name="first-name" id="first-name" autocomplete="given-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                    <input type="text" onkeyup="validateFirstName()" name="first-name" id="first-name" autocomplete="given-name" class="block w-full p-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                     <span id="first-name-error" class="error-message text-sm"></span>
                                 </div>
                             </div>
@@ -44,7 +44,7 @@ include 'create.php';
                             <div class="sm:col-span-3">
                                 <label for="last-name" class="block text-base font-medium leading-6 text-gray-900 pl-2">Last name</label>
                                 <div class="mt-2 ">
-                                    <input type="text" onkeyup="validateLastName()" name="last-name" id="last-name" autocomplete="family-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                    <input type="text" onkeyup="validateLastName()" name="last-name" id="last-name" autocomplete="family-name" class="block w-full p-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                     <span id="last-name-error" class="error-message text-sm"></span>
                                 </div>
                             </div>
@@ -52,7 +52,7 @@ include 'create.php';
                             <div class="sm:col-span-3">
                                 <label for="email" class="block w-full text-base font-medium leading-6 text-gray-900 pl-2">Email address</label>
                                 <div class="mt-2">
-                                    <input id="email" onkeyup="validateEmail()" name="email" type="email" autocomplete="email" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                    <input id="email" onkeyup="validateEmail()" name="email" type="email" autocomplete="email" class="block w-full p-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                     <span id="text" class="text-sm"></span>
                                 </div>
                             </div>
@@ -64,7 +64,7 @@ include 'create.php';
                     <div class="col-span-full ">
                         <label for="about" class="block text-base font-medium leading-6 text-gray-900 pl-2">Description</label>
                         <div class="mt-2">
-                            <textarea id="about" onkeypress="validateDescription()" name="about" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
+                            <textarea id="about" onkeyup="validateDescription()" name="about" rows="3" class="block w-full p-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
                             <span id="description-error" class="error-message text-sm"></span>
                         </div>
                     </div>
@@ -102,7 +102,6 @@ include 'create.php';
             </div>
         </form>
     </main>
-
 </body>
 
 </html>
