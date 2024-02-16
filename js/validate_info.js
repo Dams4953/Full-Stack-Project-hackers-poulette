@@ -69,7 +69,6 @@ function validateDescription() {
 
 function formValidate() {
     form.addEventListener('submit', function (event) {
-        event.preventDefault();
 
         const isEmailValid = validateEmail();
         const isLastNameValid = validateLastName();

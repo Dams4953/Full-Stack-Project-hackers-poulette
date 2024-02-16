@@ -23,7 +23,7 @@ include 'create.php';
         <form action="dashboard.php" method="post">
             <button type="submit" name="connexion">connexion</button>
         </form>
-
+   
         <form action="create.php" method="POST" id="form_contact" enctype="multipart/form-data" class="contact-form  Z-0 border border-solid border-black border-1 rounded-3xl bg-orange-200 shadow-2xl p-4">
 
 
@@ -100,8 +100,15 @@ include 'create.php';
                 <button type="submit" name="save" id="submit_btn" class="rounded-md bg-black px-7 py-2 text-base font-semibold text-white shadow-sm transition duration-200 hover:bg-white hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Submit</button>
 
             </div>
+            
         </form>
     </main>
 </body>
 
 </html>
+
+
+                
+            
+
+           
