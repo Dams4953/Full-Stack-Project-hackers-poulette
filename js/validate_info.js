@@ -1,127 +1,96 @@
-// declare variables for form
-let form = document.querySelector("form");
+const form = document.getElementById("form_contact");
 
 function validateEmail() {
-    let email = document.querySelector('#email').value;
-    let text = document.querySelector('#text');
-    let pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    const email = document.getElementById('email').value.trim();
+    const text = document.getElementById('text');
+    const pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
-    // Validation de l'email
-    if (email.match(pattern)) {
-        text.classList.add('Valid');
-        text.classList.remove('invalid');
-        text.innerHTML = "Your Email Address is Valid";
-        text.style.color = "green"
-    }
-    else {
-        text.classList.remove('Valid'); // Utilisez 'Valid' au lieu de 'valid'
-        text.classList.add('invalid'); // Ajoutez 'invalid' au lieu de 'Valid'
-        text.innerHTML = "* Please Enter Email Address";
-        text.style.color = "red";
-    }
     if (email === "") {
-        text.classList.remove('valid');
-        text.classList.remove('invalid');
-        text.innerHTML = "";
+        displayErrorMessage(text, "* Please Enter a invalid Email Address", "red");
+        return false;
+    } else if (email.match(pattern)) {
+        displaySuccessMessage(text, "Your Email Address is Valid", "green");
+        return true;
+    } else {
+        displayErrorMessage(text, "* Please Enter a valid email address", "red");
+        return false;
     }
 }
 
 function validateLastName() {
-    let inputLastName = document.getElementById('last-name');
-    let lastNameError = document.getElementById('last-name-error');
-    let lastName = inputLastName.value.trim();
-    let pattern = /^[a-zA-Z\-']+$/; // Uniquement des lettres, tirets et apostrophes autorisés
+    const inputLastName = document.getElementById('last-name');
+    const lastNameError = document.getElementById('last-name-error');
+    const lastName = inputLastName.value.trim();
+    const pattern = /^[a-zA-Z\-']+$/; 
 
     if (lastName.length === 0) {
-        lastNameError.textContent = "* Last name is required";
-        lastNameError.style.color = "red";
-        inputLastName.classList.add('invalid');
-    } else if (lastName.length <= 2 || lastName.length > 255) {
-        lastNameError.textContent = "* Last name must be between 3 and 255 characters";
-        lastNameError.style.color = "red";
-        inputLastName.classList.add('invalid');
-    } else if (!lastName.match(pattern)) {
-        lastNameError.textContent = "* Invalid last name format";
-        lastNameError.style.color = "red";
-        inputLastName.classList.add('invalid');
+        displayErrorMessage(lastNameError, "* Last name is required", "red");
+        return false;
+    } else if (lastName.length <= 2 || lastName.length > 255 || !lastName.match(pattern)) {
+        displayErrorMessage(lastNameError, "* Invalid last name format", "red");
+        return false;
     } else {
-        lastNameError.textContent = "Last name is valid";
-        lastNameError.style.color = "green"; // Mettre le texte en vert pour indiquer que c'est valide
-        inputLastName.classList.remove('invalid');
-        inputLastName.classList.add('valid'); // Ajouter une classe 'valid' pour styliser en vert
+        displaySuccessMessage(lastNameError, "Last name is valid", "green");
+        return true;
     }
 }
 
 function validateFirstName() {
-    let inputFirstName = document.getElementById('first-name');
-    let firstNameError = document.getElementById('first-name-error');
-    let firstName = inputFirstName.value.trim();
-    let pattern = /^[a-zA-Z\-']+$/; // Uniquement des lettres, tirets et apostrophes autorisés
+    const inputFirstName = document.getElementById('first-name');
+    const firstNameError = document.getElementById('first-name-error');
+    const firstName = inputFirstName.value.trim();
+    const pattern = /^[a-zA-Z\-']+$/;
 
     if (firstName.length === 0) {
-        firstNameError.textContent = "* First name is required";
-        firstNameError.style.color = "red";
-        inputFirstName.classList.add('invalid');
-    } else if (firstName.length <= 2 || firstName.length > 255) {
-        firstNameError.textContent = "* First name must be between 3 and 255 characters";
-        firstNameError.style.color = "red";
-        inputFirstName.classList.add('invalid');
-    } else if (!firstName.match(pattern)) {
-        firstNameError.textContent = "* Invalid first name format";
-        firstNameError.style.color = "red";
-        inputFirstName.classList.add('invalid');
+        displayErrorMessage(firstNameError, "* First name is required", "red");
+        return false;
+    } else if (firstName.length <= 2 || firstName.length > 255 || !firstName.match(pattern)) {
+        displayErrorMessage(firstNameError, "* Invalid first name format", "red");
+        return false;
     } else {
-        firstNameError.textContent = "First name is valid";
-        firstNameError.style.color = "green"; // Mettre le texte en vert pour indiquer que c'est valide
-        inputFirstName.classList.remove('invalid');
-        inputFirstName.classList.add('valid'); // Ajouter une classe 'valid' pour styliser en vert
+        displaySuccessMessage(firstNameError, "First name is valid", "green");
+        return true;
     }
 }
 
 function validateDescription() {
-    let description = document.getElementById('about');
-    let descriptionError = document.getElementById('description-error');
-    let descriptionText = description.value.trim();
+    const description = document.getElementById('about');
+    const descriptionError = document.getElementById('description-error');
+    const descriptionText = description.value.trim();
 
-    if (descriptionText.length < 2) {
-        descriptionError.textContent = "* Description must be at least 2 characters long";
-        descriptionError.style.color = "red";
-        description.classList.add('invalid');
-    } else if (descriptionText.length > 100) {
-        descriptionError.textContent = "* Description must be at most 100 characters long";
-        descriptionError.style.color = "red";
-        description.classList.add('invalid');
+    if (descriptionText.length < 2 || descriptionText.length > 100) {
+        displayErrorMessage(descriptionError, "* Description must be between 2 and 100 characters long", "red");
+        return false;
     } else {
-        descriptionError.textContent = "Description is valid";
-        descriptionError.style.color = "green"; // Mettre le texte en vert pour indiquer que c'est valide
-        description.classList.remove('invalid');
-        description.classList.add('valid'); // Ajouter une classe 'valid' pour styliser en vert
+        displaySuccessMessage(descriptionError, "Description is valid", "green");
+        return true;
     }
 }
 
 function formValidate() {
-    // Ajoutez un gestionnaire d'événement pour soumettre le formulaire
     form.addEventListener('submit', function (event) {
-        // Empêcher l'envoi du formulaire par défaut
         event.preventDefault();
 
-        // Valider tous les champs du formulaire
-        validateEmail();
-        validateLastName();
-        validateFirstName();
-        validateDescription();
+        const isEmailValid = validateEmail();
+        const isLastNameValid = validateLastName();
+        const isFirstNameValid = validateFirstName();
+        const isDescriptionValid = validateDescription();
 
-        // Vérifier si tous les champs sont valides
-        if (document.querySelectorAll('.invalid').length > 0) {
-            // Afficher un message d'erreur ou prendre une autre action appropriée
+        if (!isEmailValid || !isLastNameValid || !isFirstNameValid || !isDescriptionValid) {
             alert("Please fill in all required fields correctly.");
             return;
         }
-
-        // Si tous les champs sont valides, vous pouvez soumettre le formulaire
-        form.submit();
-
     });
 }
 
-formValidate();
+function displayErrorMessage(element, message, color) {
+    element.textContent = message;
+    element.style.color = color;
+}
+
+function displaySuccessMessage(element, message, color) {
+    element.textContent = message;
+    element.style.color = color;
+}
+
+export { form, validateEmail, validateLastName, validateFirstName, validateDescription, formValidate };
