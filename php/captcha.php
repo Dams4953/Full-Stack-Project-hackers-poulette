@@ -1,18 +1,17 @@
 <?php
-require_once '../captcha/autoload.php';
 
-if (isset($_POST['captcha-submit'])) {
-    $recaptcha = new \ReCaptcha\ReCaptcha("6Lcaa3IpAAAAAHHYjaJv8QL5eomJYBFVShuVb8yc");
+session_start();
 
-    $gRecaptchaResponse = $_POST['g-recaptcha-response'];
+$_SESSION['captcha'] = mt_rand(1000,9999);
+$img = imagecreate(75,30);
+$font = '../font/FiraSans-Medium.ttf';
 
-    $remoteIp = $_SERVER['REMOTE_ADDR'];
+$bg = imagecolorallocate($img, 255,255,255);
+$textcolor = imagecolorallocate($img, 0, 0, 0);
 
-    $resp = $recaptcha->setExpectedHostname('projets.test')
-        ->verify($gRecaptchaResponse, $remoteIp);
-    if ($resp->isSuccess()) {
-        echo "success";
-    } else {
-        $errors = $resp->getErrorCodes();
-    }
-}
+imagettftext($img, 23, 0, 4, 27, $textcolor, $font, $_SESSION['captcha']);
+
+header('content-type:image/jpeg');
+imagejpeg($img);
+imagedestroy($img);
+?>
