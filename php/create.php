@@ -1,25 +1,64 @@
 <?php
 include 'connection.php';
+session_start();
 
-if (isset($_POST['save'])) {
-    $firstName = $_POST['first-name'];
-    $lastName = $_POST['last-name'];
-    $email = $_POST['email'];
-    $about = $_POST['about'];
+if (isset($_POST['save']) && isset($_POST['captcha'])) {
+    if ($_POST['captcha'] == $_SESSION['captcha']) {
+        echo "captcha valide !";
 
-    $file = $_FILES['file-upload']; 
-    $fileName = $file['name'];
-    $fileContent = file_get_contents($file['tmp_name']);
+        // évite des attaques XSS
+        $firstName = htmlspecialchars($_POST['first-name'], ENT_QUOTES, 'UTF-8');
+        $lastName = htmlspecialchars($_POST['last-name'], ENT_QUOTES, 'UTF-8');
+        $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+        $about = htmlspecialchars($_POST['about'], ENT_QUOTES, 'UTF-8');
 
-    $insertQuery = "INSERT INTO users_coordonate (name, firstname, mail, file, description) VALUES (:last_name, :first_name, :email, :file, :about)";
+        if ($email === false) {
 
-    $re = $bdd->prepare($insertQuery);
-    $re->bindParam(':last_name', $lastName, PDO::PARAM_STR);
-    $re->bindParam(':first_name', $firstName, PDO::PARAM_STR);
-    $re->bindParam(':email', $email, PDO::PARAM_STR);
-    $re->bindParam(':file', $fileContent, PDO::PARAM_LOB);
-    $re->bindParam(':about', $about, PDO::PARAM_STR);
-    $re->execute();
+            echo "Erreur : Adresse email invalide.";
+        } else {
+            if (isset($_FILES['file-upload'])) {
+                $file = $_FILES['file-upload'];
 
-    header("location: index.php");
+                // évite injection de fichiers malveillants
+                $extensionsFiles = ['jpg', 'jpeg', 'png', 'pdf'];
+                $uploadedFileInfo = pathinfo($file['name']);
+                $uploadedFileExtension = strtolower($uploadedFileInfo['extension']);
+
+                if (!in_array($uploadedFileExtension, $extensionsFiles)) {
+
+                    echo "Erreur : Extension de fichier non autorisée.";
+                } else {
+                    // évite les attaques DoS
+                    $maxFileSize = 30 * 1024 * 1024;
+
+                    if ($file['size'] > $maxFileSize) {
+
+                        echo "Erreur : Fichier trop volumineux.";
+                    } else {
+
+                        $fileContent = file_get_contents($file['tmp_name']);
+
+                        // évite les attaques d'injection SQL
+                        $insertQuery = "INSERT INTO users_coordonate (name, firstname, mail, file, description) VALUES (:firstname, :lastname, :email, :file, :about)";
+                        $re = $bdd->prepare($insertQuery);
+
+                        $re->bindParam(':firstname', $firstName, PDO::PARAM_STR);
+                        $re->bindParam(':lastname', $lastName, PDO::PARAM_STR);
+                        $re->bindParam(':email', $email, PDO::PARAM_STR);
+                        $re->bindParam(':file', $fileContent, PDO::PARAM_LOB);
+                        $re->bindParam(':about', $about, PDO::PARAM_STR);
+
+                        if ($re->execute()) {
+                            header("location: index.php");
+                        } else {
+
+                            echo "Erreur : Impossible d'ajouter l'utilisateur.";
+                        }
+                    }
+                }
+            }
+        }
+    } else {
+        echo "captcha invalide...";
+    }
 }

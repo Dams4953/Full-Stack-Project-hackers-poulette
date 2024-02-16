@@ -1,23 +1,31 @@
+<?php
+include 'create.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/dist/styles.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <script type="module" src="../js/script.js"></script> 
+    <script type="module" src="../js/script.js"></script>
     <title>Contact form</title>
 </head>
 
 <body class="flex justify-center items-center full min-h-screen">
 
+
+
     <main class="w-1/5 min-w-96 m-1">
 
-        <?php include 'captcha.php'; ?>
+        <form action="dashboard.php" method="post">
+            <button type="submit" name="connexion">connexion</button>
+        </form>
+   
+        <form action="create.php" method="POST" id="form_contact" enctype="multipart/form-data" class="contact-form  Z-0 border border-solid border-black border-1 rounded-3xl bg-orange-200 shadow-2xl p-4">
 
-        <form method="POST" id="form_contact" enctype="multipart/form-data" class="contact-form  Z-0 border border-solid border-black border-1 rounded-3xl bg-orange-200 shadow-2xl p-4">
 
             <div class="space-y-5">
                 <div>
@@ -82,15 +90,25 @@
                 </div>
             </div>
 
-            <div class="captcha">
-                <div class="captcha g-recaptcha relative flex justify-center" data-sitekey="6Lcaa3IpAAAAAB3JtnLTJcsICp-sdzePdM0Rbina"></div>
-            </div>
+            
+                <img src="captcha.php"/>
+                <input type="text" name="captcha" />
+                
+            
 
-            <div class="mt-3 flex items-center justify-center m-2 gap-x-6">
+            <div class="mt-6 flex items-center justify-center m-2 gap-x-6">
                 <button type="submit" name="save" id="submit_btn" class="rounded-md bg-black px-7 py-2 text-base font-semibold text-white shadow-sm transition duration-200 hover:bg-white hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Submit</button>
+
             </div>
+            
         </form>
     </main>
 </body>
 
 </html>
+
+
+                
+            
+
+           
