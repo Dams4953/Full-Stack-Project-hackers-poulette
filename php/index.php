@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../css/dist/styles.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <!-- <script type="module" src="../js/script.js"></script> -->
+    <script type="module" src="../js/script.js"></script> 
     <title>Contact form</title>
 </head>
 
