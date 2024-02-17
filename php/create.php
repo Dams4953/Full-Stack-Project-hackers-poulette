@@ -49,7 +49,7 @@ if (isset($_POST['save']) && isset($_POST['captcha'])) {
                         $re->bindParam(':about', $about, PDO::PARAM_STR);
 
                         if ($re->execute()) {
-                            header("location: index.php");
+                            header("location: captchaGood.php");
                         } else {
 
                             echo "Erreur : Impossible d'ajouter l'utilisateur.";
@@ -59,6 +59,6 @@ if (isset($_POST['save']) && isset($_POST['captcha'])) {
             }
         }
     } else {
-        echo "captcha invalide...";
+        header("location: captchaError.php");
     }
 }

@@ -1,70 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>dashboard</title>
-    <link rel="stylesheet" href="css/basics.css" media="screen" title="no title" charset="utf-8">
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: auto;
-            padding: 20px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        th,
-        td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-
-        td a {
-            color: #3490dc;
-            text-decoration: underline;
-            cursor: pointer;
-        }
-
-        td a:hover {
-            color: #2779bd;
-        }
-    </style>
+    <title>Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
-    <h1>dashboard</h1>
-    <table>
-        <?php
-        include 'connection.php';
+<body class="bg-gray-100 w-full">
+    <header>
+        
+        <nav class="flex flex-row justify-end items-center p-4 w-full gap-8">
 
-        $sql = "SELECT * FROM users_coordonate";
-        $req = $bdd->query($sql);
+            <div class="flex justify-end">
+                <a href="http://projets.test/Full-Stack-Project-hackers-poulette/php/index.php" class="font-bold text-xl">Accueil</a>
+            </div>
+
+            <form action="index.php" method="post">
+                <button type="submit" name="déconnexion" class="font-bold text-xl bg-orange-200 px-4 py-2 rounded-md hover:bg-orange-400 transition duration-300">déconnexion</button>
+            </form>
 
 
-        while ($rep = $req->fetch()) { ?>
+        </nav>
+    </header>
+    
+
+    <table class="w-4/5 mx-auto mt-8 bg-white shadow-md rounded-lg overflow-hidden">
+        <thead class="bg-orange-200 ">
             <tr>
-                <td><?php echo $rep['name']; ?></td>
-                <td><?php echo $rep['firstname']; ?></td>
-                <td><?php echo $rep['mail']; ?></td>
-                <td><a href="view_img.php?id=<?php echo $rep['id']; ?>" target="_blank">image</a></td>
-                <td><?php echo $rep['description']; ?></td>
+                <th class="py-2 px-4">Name</th>
+                <th class="py-2 px-4">Firstname</th>
+                <th class="py-2 px-4">Email</th>
+                <th class="py-2 px-4">Image</th>
+                <th class="py-2 px-4">Description</th>
             </tr>
-        <?php } ?>
+        </thead>
+        <tbody>
+            <?php
+            include 'connection.php';
 
+            $sql = "SELECT * FROM users_coordonate";
+            $req = $bdd->query($sql);
+
+            while ($rep = $req->fetch()) { ?>
+                <tr class="hover:bg-orange-100">
+                    <td class="py-2 px-4 text-center"><?php echo $rep['name']; ?></td>
+                    <td class="py-2 px-4 text-center"><?php echo $rep['firstname']; ?></td>
+                    <td class="py-2 px-4 text-center"><?php echo $rep['mail']; ?></td>
+                    <td class="py-2 px-4 text-center"><a href="view_img.php?id=<?php echo $rep['id']; ?>" target="_blank" class="text-blue-800 underline">image</a></td>
+                    <td class="py-2 px-4 text-center"><?php echo $rep['description']; ?></td>
+                </tr>
+            <?php } ?>
+        </tbody>
     </table>
 </body>
 

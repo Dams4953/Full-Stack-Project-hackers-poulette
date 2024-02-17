@@ -8,22 +8,34 @@ include 'create.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script type="module" src="../js/script.js"></script>
+    <link href="../src/output.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Contact form</title>
 </head>
 
-<body class="flex justify-center items-center full min-h-screen">
+<body class="bg-gray-100 w-full">
+    <header>
+        
+        <nav class="flex flex-row justify-end items-center p-4 w-full gap-8">
+
+            <div class="flex justify-end">
+                <a href="http://projets.test/Full-Stack-Project-hackers-poulette/php/index.php" class="font-bold text-xl">Accueil</a>
+            </div>
+
+            <form action="connexion.php" method="post">
+                <button type="submit" name="connexion" class="font-bold text-xl bg-orange-200 px-4 py-2 rounded-md hover:bg-orange-400 transition duration-300">Connexion</button>
+            </form>
+
+
+        </nav>
+    </header>
+
+
+    <main class="container mx-auto my-8 p-4 flex justify-center items-center full min-h-screen">
 
 
 
-    <main class="w-1/5 min-w-96 m-1">
-
-        <form action="dashboard.php" method="post">
-            <button type="submit" name="connexion">connexion</button>
-        </form>
-   
         <form action="create.php" method="POST" id="form_contact" enctype="multipart/form-data" class="contact-form  Z-0 border border-solid border-black border-1 rounded-3xl bg-orange-200 shadow-2xl p-4">
 
 
@@ -90,25 +102,19 @@ include 'create.php';
                 </div>
             </div>
 
-            
-                <img src="captcha.php"/>
-                <input type="text" name="captcha" />
-                
-            
+
+            <img src="captcha.php" />
+            <input type="text" name="captcha" />
+
+
 
             <div class="mt-6 flex items-center justify-center m-2 gap-x-6">
                 <button type="submit" name="save" id="submit_btn" class="rounded-md bg-black px-7 py-2 text-base font-semibold text-white shadow-sm transition duration-200 hover:bg-white hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Submit</button>
 
             </div>
-            
+
         </form>
     </main>
 </body>
 
 </html>
-
-
-                
-            
-
-           
