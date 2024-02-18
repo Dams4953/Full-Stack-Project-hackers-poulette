@@ -2,8 +2,15 @@
 include 'connection.php';
 session_start();
 
+// token de securité
+if (!isset($_SESSION['fake_token'])) {
+    $_SESSION['fake_token'] = bin2hex(random_bytes(32));
+}
+
+
 if (isset($_POST['save']) && isset($_POST['captcha'])) {
-    if ($_POST['captcha'] == $_SESSION['captcha']) {
+    if ($_POST['captcha'] == $_SESSION['captcha'] && $_POST['fake_token'] == $_SESSION['fake_token']) {
+      
 
         // évite des attaques XSS
         $firstName = htmlspecialchars($_POST['first-name'], ENT_QUOTES, 'UTF-8');
@@ -12,6 +19,7 @@ if (isset($_POST['save']) && isset($_POST['captcha'])) {
         $about = htmlspecialchars($_POST['about'], ENT_QUOTES, 'UTF-8');
 
         if ($email === false) {
+
             echo "Erreur : Adresse email invalide.";
         } else {
             if (isset($_FILES['file-upload'])) {
@@ -23,29 +31,33 @@ if (isset($_POST['save']) && isset($_POST['captcha'])) {
                 $uploadedFileExtension = strtolower($uploadedFileInfo['extension']);
 
                 if (!in_array($uploadedFileExtension, $extensionsFiles)) {
+
                     echo "Erreur : Extension de fichier non autorisée.";
                 } else {
                     // évite les attaques DoS
                     $maxFileSize = 30 * 1024 * 1024;
 
                     if ($file['size'] > $maxFileSize) {
+
                         echo "Erreur : Fichier trop volumineux.";
                     } else {
+
                         $fileContent = file_get_contents($file['tmp_name']);
 
                         // évite les attaques d'injection SQL
                         $insertQuery = "INSERT INTO users_coordonate (name, firstname, mail, file, description) VALUES (:firstname, :lastname, :email, :file, :about)";
                         $re = $bdd->prepare($insertQuery);
+
                         $re->bindParam(':firstname', $firstName, PDO::PARAM_STR);
                         $re->bindParam(':lastname', $lastName, PDO::PARAM_STR);
                         $re->bindParam(':email', $email, PDO::PARAM_STR);
-                        $re->bindParam(':file', $fileContent, PDO::PARAM_LOB); 
+                        $re->bindParam(':file', $fileContent, PDO::PARAM_LOB);
                         $re->bindParam(':about', $about, PDO::PARAM_STR);
 
                         if ($re->execute()) {
                             header("location: captchaGood.php");
-                            exit(); 
                         } else {
+
                             echo "Erreur : Impossible d'ajouter l'utilisateur.";
                         }
                     }
@@ -54,7 +66,5 @@ if (isset($_POST['save']) && isset($_POST['captcha'])) {
         }
     } else {
         header("location: captchaError.php");
-        exit(); 
     }
 }
-?>

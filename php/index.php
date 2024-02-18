@@ -1,5 +1,14 @@
 <?php
-include 'create.php';
+require("scriptMail.php");
+?>
+<?php
+if (isset($_POST['save'])) {
+    if (empty($_POST['email']) || empty($_POST['subject']) || empty($_POST['message'])) {
+        $response = "All fields are required";
+    } else {
+        $response = sendMail($_POST['email'], $_POST['subject'], $_POST['message']);
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -88,7 +97,7 @@ include 'create.php';
                                     <label for="file-upload" class="relative cursor-pointer rounded-md font-semibold focus-within:outline-none focus-within:ring-2 focus-within:ring-gray-600 focus-within:ring-offset-2 hover:text-black">
                                         <span>Upload a file</span>
                                         <input id="file-upload" name="file-upload" type="file" class="sr-only">
-                                    </label>                    
+                                    </label>
                                 </div>
                             </div>
                         </div>
@@ -103,10 +112,19 @@ include 'create.php';
             </div>
 
             <div class="mt-6 flex items-center justify-center m-2 gap-x-6">
+                <input type="hidden" name="fake_token" value="<?php echo $_SESSION['fake_token']; ?>">
                 <button type="submit" name="save" id="submit_btn" class="rounded-md bg-black px-7 py-2 text-base font-semibold text-white shadow-sm transition duration-200 hover:bg-white hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Submit</button>
 
             </div>
             <div id="ok"></div>
+            <?php
+            if (@$response == "success") {
+            ?>
+
+                <p class="success">Email send successfully</p>
+            <?php
+            }
+            ?>
         </form>
     </main>
 </body>
