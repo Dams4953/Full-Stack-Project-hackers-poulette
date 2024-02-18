@@ -21,6 +21,7 @@ Here are the main features of hackers-poulette:
   5\. Security token implementation: Incorporates security tokens for enhanced protection.  
 
 Project Group : Duo  
+
 Pages HTML : 
 - index.php
 - connexion.php
