@@ -32,7 +32,7 @@ if (isset($_POST['save'])) {
         <nav class="flex flex-row justify-end items-center p-4 w-full gap-8">
 
             <form action="connexion.php" method="post">
-                <button type="submit" name="connexion" class="font-bold text-xl bg-orange-200 px-4 py-2 rounded-md hover:bg-orange-400 transition duration-300 border-gray-500 rounded-2xl bg-orange-200 shadow-2xl p-6">Connexion</button>
+                <button type="submit" name="connexion" class="font-bold text-xl bg-orange-200 px-4 py-2 rounded-md hover:bg-orange-400 transition duration-300 border-gray-500 rounded-2xl bg-orange-200 shadow-2xl p-6">Log in</button>
             </form>
 
             <a href="http://projets.test/Full-Stack-Project-hackers-poulette/php/index.php" class="font-bold text-xl p-2 group">
@@ -111,7 +111,7 @@ if (isset($_POST['save'])) {
 
             <div class="flex items-center justify-center mt-8">
                 <img src="captcha.php" alt="Captcha Image" class="border border-gray-300 rounded-md shadow-md mr-4">
-                <input type="text" name="captcha" placeholder="Entrez le captcha" class="border border-gray-300 rounded-md p-2 focus:outline-none focus:border-gray-800">
+                <input type="text" name="captcha" placeholder="Enter the captcha" class="border border-gray-300 rounded-md p-2 focus:outline-none focus:border-gray-800">
             </div>
 
             <div class="mt-6 flex items-center justify-center m-2 gap-x-6">

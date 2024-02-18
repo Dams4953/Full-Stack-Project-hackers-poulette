@@ -13,7 +13,7 @@
         <nav class="flex flex-row justify-end items-center p-4 w-full gap-8">
 
             <form action="index.php" method="post">
-                <button type="submit" name="déconnexion" class="font-bold text-xl bg-orange-200 px-4 py-2 rounded-md hover:bg-orange-400 transition duration-300">déconnexion</button>
+                <button type="submit" name="déconnexion" class="font-bold text-xl bg-orange-200 px-4 py-2 rounded-md hover:bg-orange-400 transition duration-300">Log out</button>
             </form>
 
             <a href="http://projets.test/Full-Stack-Project-hackers-poulette/php/index.php" class="font-bold text-xl p-2 group">
