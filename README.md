@@ -1,5 +1,5 @@
 # Full-Stack-Project-hackers-poulette
-## Project hackers-poulette, Secure contact form for the fictional company
+## Project hackers-poulette, secure contact form for the fictional company
 ![form-poulette](https://github.com/Dams4953/Full-Stack-Project-hackers-poulette/assets/149949090/a75da9bf-40ab-43b8-bb25-196547d02115)
 ## Website 
 - Link WebSite : [form-poulet](https://form-poulette.000webhostapp.com/index.php)
