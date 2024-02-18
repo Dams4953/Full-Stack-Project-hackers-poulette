@@ -1,5 +1,8 @@
 <?php
-require("scriptMail.php");
+require("php/scriptMail.php");
+?>
+<?php
+include "php/create.php";
 ?>
 <?php
 if (isset($_POST['save'])) {
