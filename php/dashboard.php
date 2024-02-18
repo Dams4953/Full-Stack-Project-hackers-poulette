@@ -9,21 +9,20 @@
 
 <body class="bg-gray-100 w-full">
     <header>
-        
-        <nav class="flex flex-row justify-end items-center p-4 w-full gap-8">
 
-            <div class="flex justify-end">
-                <a href="http://projets.test/Full-Stack-Project-hackers-poulette/php/index.php" class="font-bold text-xl">Accueil</a>
-            </div>
+        <nav class="flex flex-row justify-end items-center p-4 w-full gap-8">
 
             <form action="index.php" method="post">
                 <button type="submit" name="déconnexion" class="font-bold text-xl bg-orange-200 px-4 py-2 rounded-md hover:bg-orange-400 transition duration-300">déconnexion</button>
             </form>
 
+            <a href="http://projets.test/Full-Stack-Project-hackers-poulette/php/index.php" class="font-bold text-xl p-2 group">
+                <img src="../img/accueil.svg" alt="accueil" style="width: 40px; height: auto;" class="font-bold text-xl px40 p-2 rounded-md hover:bg-orange-400 transition duration-300">
+            </a>
 
         </nav>
     </header>
-    
+
 
     <table class="w-4/5 mx-auto mt-8 bg-white shadow-md rounded-lg overflow-hidden">
         <thead class="bg-orange-200 ">
